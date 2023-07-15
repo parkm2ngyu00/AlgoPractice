@@ -17,4 +17,4 @@ for i in range(100):
         if space[i][j] == 1:
             count += 1
 
-print(count)   
+print(count)
