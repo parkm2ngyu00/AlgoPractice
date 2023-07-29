@@ -28,4 +28,16 @@ def bfs(start):
                 queue.append(nxt)
         queue.popleft()
 
+visit = [0 for _ in range(n + 1)]
+visit[v] = 1
+
+def dfs(curr):
+    print(curr, end=' ')
+    for nxt in graph[curr]:
+        if visit[nxt] == 0:
+            visit[nxt] = 1
+            dfs(nxt)
+
+dfs(v)
+print()
 bfs(v)
