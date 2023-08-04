@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10000) # 백준에서 재귀로 문제를 풀 때 반드시 해줘야 함 (재귀 횟수에 제한이 있기 때문)
 
 def dfs(x, y):
     dx = [0, 0, -1, 1]
