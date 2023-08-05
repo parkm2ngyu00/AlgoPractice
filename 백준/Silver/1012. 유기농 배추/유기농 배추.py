@@ -1,28 +1,48 @@
 import sys
-sys.setrecursionlimit(10000) # 백준에서 재귀로 문제를 풀 때 반드시 해줘야 함 (재귀 횟수에 제한이 있기 때문)
+from collections import deque
+sys.setrecursionlimit(10000)
+
+t = int(sys.stdin.readline())
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+def bfs(x, y):
+    queue = deque()
+    queue.append((x, y))
+    while len(queue) > 0:
+        cx, cy = queue.popleft()
+        for i in range(4):
+            nx = cx + dx[i]
+            ny = cy + dy[i]
+            if nx < 0 or ny < 0 or nx >= n or ny >= m:
+                continue
+            if matrix[nx][ny] == 1:
+                matrix[nx][ny] = 0
+                queue.append((nx, ny))
 
 def dfs(x, y):
-    dx = [0, 0, -1, 1]
-    dy = [1, -1, 0, 0]
-    
     for i in range(4):
         nx = x + dx[i]
         ny = y + dy[i]
-        if (0 <= nx < n) and (0 <= ny < m):
-            if field[nx][ny] == 1:
-                field[nx][ny] = 0
-                dfs(nx, ny)
-                
-for _ in range(int(sys.stdin.readline())):
+        if nx < 0 or ny < 0 or nx >= n or ny >= m:
+            continue
+        if matrix[nx][ny] == 1:
+            matrix[nx][ny] = 0
+            dfs(nx, ny)
+
+for i in range(t):
     m, n, k = map(int, sys.stdin.readline().split())
-    field = [[0 for _ in range(m)] for _ in range(n)]
-    count = 0
+    matrix = [[0 for _ in range(m)] for _ in range(n)]
     for _ in range(k):
         x, y = map(int, sys.stdin.readline().split())
-        field[y][x] = 1
-    for x in range(n):
-        for y in range(m):
-            if field[x][y] == 1:
-                dfs(x, y)
+        matrix[y][x] = 1
+    count = 0
+    for j in range(n):
+        for k in range(m):
+            if matrix[j][k] == 1:
+                matrix[j][k] = 0
+                bfs(j, k)
+                # dfs(j, k)
                 count += 1
     print(count)
