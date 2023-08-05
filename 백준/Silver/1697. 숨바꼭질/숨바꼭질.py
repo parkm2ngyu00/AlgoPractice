@@ -12,9 +12,9 @@ def bfs(n):
         if curr == k:
             print(dist[curr])
             break
-        for next in (curr+1, curr-1, curr*2):
-            if 0 <= next <= max and dist[next] == 0:
-                dist[next] = dist[curr] + 1
-                queue.append(next)
+        for nxt in (curr+1, curr-1, curr*2):
+            if 0 <= nxt <= max and dist[nxt] == 0:
+                dist[nxt] = dist[curr] + 1
+                queue.append(nxt)
 
 bfs(n)
