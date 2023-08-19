@@ -43,13 +43,13 @@ def bfs(x, y, shark_size):
                 if graph[nx][ny] < shark_size and graph[nx][ny] != 0:
                     temp.append((nx, ny, distance[nx][ny]))
     # 내림차순 정렬하는 이유는 아래서 pop을 사용하기 때문
-    return sorted(temp, key=lambda x : (-x[2], -x[0], -x[1]))
+    return sorted(temp, key=lambda x : (x[2], x[0], x[1]))
 
 while True:
     shark = bfs(x, y, size)
     if len(shark) == 0:
         break
-    nx, ny, dist = shark.pop()
+    nx, ny, dist = shark[0]
     # 움직이는 칸수가 곧 시간이 됨
     result += dist
     graph[x][y], graph[nx][ny] = 0, 0
