@@ -1,12 +1,9 @@
 import sys
 
 N = int(sys.stdin.readline())
-
 matrix = []
-
 for _ in range(N):
     matrix.append(list(map(int, sys.stdin.readline().split())))
-
 min_value = float('inf')
 
 def dfs_backtracking(start, next, value, visited):
